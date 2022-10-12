@@ -11,6 +11,8 @@ import {
   tileLayer,
   TileLayer,
 } from 'leaflet';
+import { Luminaria } from './models/luminaria.model';
+import { LuminariesService } from './services/luminaries.services';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,7 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public map: Map;
+  public map!: Map;
 
   public mapOptions: MapOptions = {
     zoom: 17,
@@ -34,7 +36,7 @@ export class AppComponent {
     [37.70590845000001, -3.98959274],
   ]);
 
-  public constructor() {
+  public constructor(public luminariesService: LuminariesService) {
     this.baseLayer = tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       {
@@ -77,6 +79,18 @@ export class AppComponent {
   }
 
   valida(event: any): void {
+    const {
+      layer: {
+        feature: { properties: data },
+      },
+    } = event;
+    if (data.id_luminaria) {
+      let luminaria = new Luminaria();
+      luminaria = data;
+      this.luminariesService.setLuminaries(luminaria);
+      this.luminariesService.setValidLuminaries(true);
+    }
+
     this.map.zoomIn();
   }
 
