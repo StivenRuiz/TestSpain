@@ -5,11 +5,15 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
+import { DetailInfoComponent } from './detail-info/detail-info.component';
+import { LuminariesChargeComponent } from './luminaries-charge/luminaries-charge.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolBarComponent
+    ToolBarComponent,
+    DetailInfoComponent,
+    LuminariesChargeComponent
   ],
   imports: [
     BrowserModule,

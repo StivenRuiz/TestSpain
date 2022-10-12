@@ -1,0 +1,116 @@
+<div class="container" *ngIf="!infoComplete else completeInfo">
+    <div class="row">
+        <div class="col-6">
+            <h4>Id luminaria</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.id_luminaria}}
+        </div>
+    </div>
+</div>
+<ng-template class="container" #completeInfo>
+    <div class="row">
+        <div class="col-6">
+            <h4>Altura</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.altura}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Cantidad lámparas</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.cantidad_lamparas}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Distancia eje</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.distancia_eje}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Equipo Auxiliar</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.equipo_auxiliar}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Estado lámpara</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.estado_lampara}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Estado luminaria</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.estado_luminaria}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Estado soporte</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.estado_soporte}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Lado vía</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.lado_via}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Longitud brazo</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.longitud_brazo}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Marca lámpara</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.marca_lampara}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Marca luminaria</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.marca_luminaria}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Marca soporte</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.marca_soporte}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h4>Modelo lámpara</h4>
+        </div>
+        <div class="col-6">
+            {{luminaria?.modelo_lampara}}
+        </div>
+    </div>
+</ng-template>
