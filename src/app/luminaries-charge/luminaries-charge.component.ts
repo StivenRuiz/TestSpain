@@ -23,4 +23,9 @@ export class LuminariesChargeComponent implements OnInit, DoCheck {
       console.log('entro', this.luminaries);
     }
   }
+  watchInfoComplete(luminary: Luminaria) {
+    luminary.info_completa = !luminary.info_completa ? true : false;
+    this.luminariesService.updateLuminaryVisibility(luminary);
+    this.luminariesService.setValidLuminaries(true);
+  }
 }

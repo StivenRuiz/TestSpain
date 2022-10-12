@@ -18,6 +18,22 @@ export class LuminariesService {
 
   setLuminaries(luminaries: Luminaria) {
     this.lumininaries.push(luminaries);
+    luminaries.info_completa = true;
+    this.updateLuminaryVisibility(luminaries);
+  }
+
+  removeLuminary(luminary: Luminaria) {
+    this.lumininaries = this.lumininaries.filter((lumi) => lumi.id_luminaria !== luminary.id_luminaria);
+  }
+
+  updateLuminaryVisibility(luminary: Luminaria) {
+    this.lumininaries.map((lumi) => {
+      if(lumi.id_luminaria === luminary.id_luminaria) {
+        lumi.info_completa = luminary.info_completa;
+      } else {
+        lumi.info_completa = false;
+      }
+    })
   }
 
   getLuminaries(): Luminaria[] {

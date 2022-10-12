@@ -9,7 +9,6 @@ import { Luminaria } from '../models/luminaria.model';
 export class DetailInfoComponent implements OnInit {
 
   @Input() luminaria?: Luminaria;
-  infoComplete: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

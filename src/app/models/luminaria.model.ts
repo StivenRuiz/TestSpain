@@ -35,4 +35,5 @@ export class Luminaria {
     distancia_eje?: string;
     lado_via?: string;
     longitud_brazo?: string;
+    info_completa?: boolean = false;
 }
