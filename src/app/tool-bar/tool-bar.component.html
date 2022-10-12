@@ -1,8 +1,13 @@
-<div class="container">
-  <div style="margin-top: 50px">
+<div class="container-detail mt-5">
+  <div>
     <a [routerLink]="'/informacion-elemento'">
       <span class="primary">Regresar al inicio de sesión</span>
     </a>
+    <a [routerLink]="'/'">
+        <span class="primary">Regresar al inicio de sesión</span>
+      </a>
   </div>
-  <router-outlet></router-outlet>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
