@@ -79,6 +79,9 @@ export class AppComponent {
   }
 
   valida(event: any): void {
+    console.log(event);
+    event.layer.options.fillColor = '#78FF00';
+    event.layer.options.color = '#FF2D00';
     const {
       layer: {
         feature: { properties: data },
@@ -90,8 +93,14 @@ export class AppComponent {
       this.luminariesService.setLuminaries(luminaria);
       this.luminariesService.setValidLuminaries(true);
     }
-
-    this.map.zoomIn();
+    // let latlng = L.latLng(50.5, 30.5);
+    this.map.setView(event.latlng, 18, {
+      animate: false,
+      duration: 0.5,
+      easeLinearity: 0.6,
+      noMoveStart: true,
+    });
+    // this.map.setView([48.3, 2]);
   }
 
   mapClicked($event: any) {
