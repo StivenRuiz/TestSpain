@@ -18,10 +18,18 @@ export class LuminariesService {
     features.forEach((feature) => {
       this.luminariaesInMap.push(feature['properties']);
     });
+    localStorage.setItem("luminariesInMap", JSON.stringify(this.luminariaesInMap));
   }
 
   getLuminariesInMap() {
-    return this.luminariaesInMap;
+    let luminariesFromSt = localStorage.getItem("luminariesInMap");
+    let luminaries = [];
+    if (this.luminariaesInMap && this.luminariaesInMap.length > 0) {
+      luminaries = this.luminariaesInMap;
+    } else if (luminariesFromSt) {
+       luminaries = JSON.parse(luminariesFromSt);
+    }
+    return luminaries;
   }
 
   getValidLuminaries(): boolean {

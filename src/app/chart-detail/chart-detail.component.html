@@ -1,12 +1,20 @@
 <div>
-  <div class="container-chart">
-    <div class="col-md-12">
-      <highcharts-chart
-        style="width: 100%; display: block; margin: auto; float: left"
-        [Highcharts]="Highcharts"
-        [options]="pieChartOptions"
-      >
-      </highcharts-chart>
+    <form class="form">
+        <div class="form-group">
+            <label for="type">Atributo:</label>
+            <select  class="form-control-select" [(ngModel)]="selectedType"
+                (ngModelChange)="valueDataChange($event);" name="type" minlength="1" required>
+                <option *ngFor="let item of optionsChart" [value]="item.value">
+                    {{ item.label }}
+                </option>
+            </select>
+        </div>
+    </form>
+    <div class="container-chart">
+        <div class="col-md-12">
+            <highcharts-chart style="width: 100%; display: block; margin: auto; float: left" [Highcharts]="Highcharts"
+                [options]="pieChartOptions">
+            </highcharts-chart>
+        </div>
     </div>
-  </div>
 </div>

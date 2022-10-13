@@ -1,11 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
-import { Luminaria } from '../models/luminaria.model';
-import { LuminariesService } from '../services/luminaries.services';
-// const IndicatorsCore = require('highcharts/indicators/indicators');
-// IndicatorsCore(Highcharts);
-// const IndicatorZigZag = require('highcharts/indicators/zigzag');
-// IndicatorZigZag(Highcharts);
+import { DataChart } from '../models/data-chart.model';
+import { OptionsChart } from '../models/enum-options-char.model';
+import { LuminariaInMap } from '../models/luminariaInMap.model';
+import { LuminariesService } from '../services/luminaries.service';
 
 @Component({
   selector: 'app-chart-detail',
@@ -15,71 +13,92 @@ import { LuminariesService } from '../services/luminaries.services';
 export class ChartDetailComponent implements OnInit {
   Highcharts = Highcharts;
   pieChartOptions: any;
-  listLuminariesMap: Luminaria[] = [];
+  listLuminariesMap: LuminariaInMap[] = [];
+  public selectedType: string = "tipo_luminaria";
+  listDataChart: DataChart[] = [];
+  dataToUseInChart: (string | number | undefined)[][] = [];
+  optionsChart = OptionsChart;
 
-  constructor(public luminariesService: LuminariesService) {
+  constructor(public luminariesService: LuminariesService) {}
+
+  ngOnInit(): void {
+    this.chargeChartInfo();
+    this.createPieChart();
+  }
+
+  valueDataChange(event: any){
+    console.log(event);
+  }
+
+  chargeChartInfo() {
     this.listLuminariesMap = this.luminariesService.getLuminariesInMap();
-    console.log('list', this.listLuminariesMap);
 
     if (this.listLuminariesMap && this.listLuminariesMap.length > 0) {
-      const sumTipolampara = this.listLuminariesMap.reduce(
-        (previousValue, currentValue) => {
-          let sum = previousValue;
-          if (currentValue.tipo_lampara) {
-            sum++;
-          }
-          return sum;
-        },
-        0
-      );
-      this.pieChartOptions = {
-        chart: {
-          renderTo: 'container',
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-        },
-        credits: {
-          enabled: false,
-        },
-        title: {
-          text: 'Tipos soporte',
-        },
-        subtitle: {
-          text: 'N° total luminarias ' + this.listLuminariesMap.length,
-        },
-        tooltip: {
-          pointFormat: '<b>{point.percentage}%</b>',
-          percentageDecimals: 1,
-        },
-        plotOptions: {
-          pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-              enabled: true,
-              color: '#000000',
-              connectorColor: '#000000',
-              formatter: function () {
-                return '<b>hola</b>:12  %';
-              },
-            },
-          },
-        },
-        series: [
-          {
-            type: 'pie',
-            name: '',
-            data: [
-              ['Tipo Soporte', 45.0],
-              ['Tipo Lumunaria', 26.8],
-              ['Tipo Lampara', sumTipolampara],
-            ],
-          },
-        ],
-      };
+      this.listLuminariesMap.forEach(luminary => {
+        let founded = this.listDataChart.find(dc => dc.nombre == luminary[this.selectedType as keyof typeof luminary]);
+        if (founded) {
+          this.listDataChart.forEach((dataChartInList) => {
+            if (dataChartInList.nombre == luminary[this.selectedType as keyof typeof luminary]) {
+              if (dataChartInList.cantidad || dataChartInList.cantidad == 0) {
+                dataChartInList.cantidad++;
+              }
+            }
+          });
+        } else {
+          let dataChart = new DataChart();
+          dataChart.nombre = luminary[this.selectedType as keyof typeof luminary];
+          dataChart.cantidad = 1;
+          this.listDataChart.push(dataChart);
+        }
+      });
+      this.listDataChart.forEach((lDataChart) => {
+        this.dataToUseInChart.push([lDataChart.nombre, lDataChart.cantidad]);
+      })
     }
   }
 
-  ngOnInit(): void {}
+  createPieChart() {
+    this.pieChartOptions = {
+      chart: {
+        renderTo: 'container',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+      },
+      credits: {
+        enabled: false,
+      },
+      title: {
+        text: this.selectedType.substring(0,1).toLocaleUpperCase() + this.selectedType.replace("_", " ").substring(1),
+      },
+      subtitle: {
+        text: 'N° total luminarias ' + this.listLuminariesMap.length,
+      },
+      tooltip: {
+        pointFormat: '<b>{point.percentage}%</b>',
+        percentageDecimals: 1,
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function () {
+              return '<b></b>:12  %';
+            },
+          },
+        },
+      },
+      series: [
+        {
+          type: 'pie',
+          name: '',
+          data: this.dataToUseInChart,
+        },
+      ],
+    };
+  }
 }

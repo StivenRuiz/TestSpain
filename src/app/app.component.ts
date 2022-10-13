@@ -12,7 +12,7 @@ import {
   TileLayer,
 } from 'leaflet';
 import { Luminaria } from './models/luminaria.model';
-import { LuminariesService } from './services/luminaries.services';
+import { LuminariesService } from './services/luminaries.service';
 import { EventTypes } from './models/event-types.model';
 import { ToastService } from './services/toast.service';
 

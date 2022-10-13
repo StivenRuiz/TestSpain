@@ -11,6 +11,7 @@ import { ToastComponent } from './toast/toast.component';
 import { ToasterComponent } from './toaster/toaster.component';
 import { ChartDetailComponent } from './chart-detail/chart-detail.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AppRoutingModule,
     LeafletModule,
     HighchartsChartModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
