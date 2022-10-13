@@ -9,6 +9,7 @@ import { DetailInfoComponent } from './detail-info/detail-info.component';
 import { LuminariesChargeComponent } from './luminaries-charge/luminaries-charge.component';
 import { ToastComponent } from './toast/toast.component';
 import { ToasterComponent } from './toaster/toaster.component';
+import { ChartDetailComponent } from './chart-detail/chart-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ToasterComponent } from './toaster/toaster.component';
     DetailInfoComponent,
     LuminariesChargeComponent,
     ToastComponent,
-    ToasterComponent
+    ToasterComponent,
+    ChartDetailComponent
   ],
   imports: [
     BrowserModule,
