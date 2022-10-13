@@ -13,14 +13,12 @@ export class LuminariesChargeComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.luminaries = this.luminariesService.getLuminaries();
-    console.log('data inicial', this.luminaries);
   }
 
   ngDoCheck(): void {
     if (this.luminariesService.getValidLuminaries()) {
       this.luminaries = this.luminariesService.getLuminaries();
       this.luminariesService.setValidLuminaries(false);
-      console.log('entro', this.luminaries);
     }
   }
   watchInfoComplete(luminary: Luminaria) {

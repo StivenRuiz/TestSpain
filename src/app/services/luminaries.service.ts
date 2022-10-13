@@ -18,16 +18,19 @@ export class LuminariesService {
     features.forEach((feature) => {
       this.luminariaesInMap.push(feature['properties']);
     });
-    localStorage.setItem("luminariesInMap", JSON.stringify(this.luminariaesInMap));
+    localStorage.setItem(
+      'luminariesInMap',
+      JSON.stringify(this.luminariaesInMap)
+    );
   }
 
   getLuminariesInMap() {
-    let luminariesFromSt = localStorage.getItem("luminariesInMap");
+    let luminariesFromSt = localStorage.getItem('luminariesInMap');
     let luminaries = [];
     if (this.luminariaesInMap && this.luminariaesInMap.length > 0) {
       luminaries = this.luminariaesInMap;
     } else if (luminariesFromSt) {
-       luminaries = JSON.parse(luminariesFromSt);
+      luminaries = JSON.parse(luminariesFromSt);
     }
     return luminaries;
   }
@@ -42,6 +45,9 @@ export class LuminariesService {
     );
     if (!valida) {
       this.lumininaries.push(luminaries);
+      luminaries.info_completa = true;
+      this.updateLuminaryVisibility(luminaries);
+    } else {
       luminaries.info_completa = true;
       this.updateLuminaryVisibility(luminaries);
     }

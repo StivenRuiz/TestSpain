@@ -90,9 +90,6 @@ export class AppComponent {
   }
 
   valida(event: any): void {
-    console.log(event);
-    event.layer.options.fillColor = '#78FF00';
-    event.layer.options.color = '#FF2D00';
     const {
       layer: {
         feature: { properties: data },
@@ -101,9 +98,13 @@ export class AppComponent {
     if (data.id_luminaria) {
       let luminaria = new Luminaria();
       luminaria = data;
-      this.luminariesService.setLuminaries(luminaria);
       this.luminariesService.setValidLuminaries(true);
+      this.luminariesService.setLuminaries(luminaria);
+      event.layer.options.fillColor = '#78FF00';
+      event.layer.options.color = '#FF2D00';
     } else {
+      event.layer.options.fillColor = '#DC3545';
+      event.layer.options.color = '#DC3545';
       this.toastService.showErrorToast('Error', 'no se encontró id_luminaria');
     }
 
@@ -113,10 +114,5 @@ export class AppComponent {
       easeLinearity: 0.6,
       noMoveStart: true,
     });
-  }
-
-  mapClicked($event: any) {
-    // this.map.fitBounds($event.layer.getBounds());
-    console.log($event);
   }
 }

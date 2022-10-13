@@ -69,7 +69,6 @@ export class ChartDetailComponent implements OnInit {
   }
 
   createPieChart() {
-    console.log(this.dataToUseInChart);
     this.pieChartOptions = {
       chart: {
         renderTo: 'container',
