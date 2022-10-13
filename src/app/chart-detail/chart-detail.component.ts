@@ -27,10 +27,14 @@ export class ChartDetailComponent implements OnInit {
   }
 
   valueDataChange(event: any){
-    console.log(event);
+    this.selectedType = event;
+    this.chargeChartInfo();
+    this.createPieChart();
   }
 
   chargeChartInfo() {
+    this.listDataChart = [];
+    this.dataToUseInChart = [];
     this.listLuminariesMap = this.luminariesService.getLuminariesInMap();
 
     if (this.listLuminariesMap && this.listLuminariesMap.length > 0) {
@@ -58,6 +62,7 @@ export class ChartDetailComponent implements OnInit {
   }
 
   createPieChart() {
+    console.log(this.dataToUseInChart);
     this.pieChartOptions = {
       chart: {
         renderTo: 'container',
@@ -86,9 +91,7 @@ export class ChartDetailComponent implements OnInit {
             enabled: true,
             color: '#000000',
             connectorColor: '#000000',
-            formatter: function () {
-              return '<b></b>:12  %';
-            },
+            format: '<b>{point.name}</b>:<br>{point.percentage}%'
           },
         },
       },
