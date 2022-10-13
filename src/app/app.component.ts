@@ -13,6 +13,8 @@ import {
 } from 'leaflet';
 import { Luminaria } from './models/luminaria.model';
 import { LuminariesService } from './services/luminaries.services';
+import { EventTypes } from './models/event-types.model';
+import { ToastService } from './services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,10 @@ import { LuminariesService } from './services/luminaries.services';
 })
 export class AppComponent {
   public map!: Map;
+
+  title = 'angular-bootstrap-toast-service';
+
+  EventTypes = EventTypes;
 
   public mapOptions: MapOptions = {
     zoom: 17,
@@ -36,7 +42,10 @@ export class AppComponent {
     [37.70590845000001, -3.98959274],
   ]);
 
-  public constructor(public luminariesService: LuminariesService) {
+  public constructor(
+    public luminariesService: LuminariesService,
+    private toastService: ToastService
+  ) {
     this.baseLayer = tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       {
@@ -92,6 +101,8 @@ export class AppComponent {
       luminaria = data;
       this.luminariesService.setLuminaries(luminaria);
       this.luminariesService.setValidLuminaries(true);
+    } else {
+      this.toastService.showErrorToast('Error', 'no se encontró id_luminaria');
     }
 
     this.map.setView(event.latlng, 18, {

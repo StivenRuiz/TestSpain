@@ -1,11 +1,13 @@
-<div class="map-container"
-    leaflet
-    [leafletOptions]="mapOptions"
-    [leafletLayer]="baseLayer"
-    [leafletFitBounds]="mapFitBounds"
-    (leafletMapReady)="onMapReady($event)"
-    (leafletClick)="mapClicked($event)"
-    >
-</div>
+<app-toaster></app-toaster>
+
+<div
+  class="map-container"
+  leaflet
+  [leafletOptions]="mapOptions"
+  [leafletLayer]="baseLayer"
+  [leafletFitBounds]="mapFitBounds"
+  (leafletMapReady)="onMapReady($event)"
+  (leafletClick)="mapClicked($event)"
+></div>
 
 <app-tool-bar></app-tool-bar>
