@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { Luminaria } from '../models/luminaria.model';
-import { LuminariesService } from '../services/luminaries.services';
+import { LuminariesService } from '../services/luminaries.service';
 
 @Component({
   selector: 'app-luminaries-charge',
