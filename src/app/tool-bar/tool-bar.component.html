@@ -1,11 +1,15 @@
 <div class="container-detail mt-5">
-  <div>
-    <a [routerLink]="'/informacion-elemento'">
-      <span class="primary">Regresar al inicio de sesión</span>
-    </a>
-    <a [routerLink]="'/'">
-        <span class="primary">Regresar al inicio de sesión</span>
+  <div class="row">
+    <div class="col-xl-6 col-lg-8 d-flex justify-content-space-around  mt-2 mb-1">
+      <a [routerLink]="'/informacion-elemento'">
+        <img class="imgIcon"  src="assets/icons/chart.svg" alt="">
       </a>
+      <a [routerLink]="'/'">
+        <img class="imgIcon"  src="assets/icons/info.svg" alt="">
+      </a>
+    </div>
+    <span class="elementText"><br>Información del elemento</span>
+    <div class="line"></div>
   </div>
   <div class="container">
     <router-outlet></router-outlet>

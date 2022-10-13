@@ -1,18 +1,46 @@
 .container-detail{
-    position: absolute;
-    bottom: 0%;
-    right: 0%;
-    width: 27.5%;
-    height: 100%;
-    background-color: #FFF;
-    padding: 1rem;
-    color: #4F4F4F;
-    font-size: .875rem;
-    z-index: 1001;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  width: 27.5%;
+  height: 100%;
+  background-color: #FFF;
+  padding: 1rem;
+  color: #4F4F4F;
+  font-size: .875rem;
+  z-index: 1001;
+}
+
+.row {
+  justify-content: space-evenly;
 }
 
 .container {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 90%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 90%;
+}
+.imgIcon {
+  width: 40%;
+}
+.elementText{
+  font-size: medium;
+  font-weight: 500;
+}
+.line {
+  border-top: 1px solid black;
+  width: 93%;
+  height: 20px;
+  padding: 0;
+  margin: 10px auto 0 auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .container-detail{
+    height: 40%;
+    width: 100%;
+  }
+  .imgIcon {
+    width: 20%;
+  }
 }
