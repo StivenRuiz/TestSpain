@@ -5,7 +5,6 @@ import {
   GeoJSONOptions,
   LatLng,
   LatLngBounds,
-  Layer,
   Map,
   MapOptions,
   tileLayer,
@@ -68,9 +67,7 @@ export class AppComponent {
       await fetch('assets/data/luminarias.geojson')
     ).json();
 
-    const {
-      features: features
-    } = luminaires;
+    const { features: features } = luminaires;
     this.luminariesService.setLuminariesInMap(features);
 
     const options: GeoJSONOptions = {
@@ -86,8 +83,8 @@ export class AppComponent {
       }),
     };
 
-    let l = geoJSON(luminaires, options)
-      .bindPopup('Hi There!')
+    geoJSON(luminaires, options)
+      .bindPopup('Luminaria')
       .on('click', (event) => this.valida(event))
       .addTo(this.map);
   }
