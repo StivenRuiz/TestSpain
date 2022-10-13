@@ -1,4 +1,5 @@
 .container-chart {
-  justify-content: center !important;
   display: flex;
+  overflow-x: scroll;
+  overscroll-behavior-x: auto;
 }

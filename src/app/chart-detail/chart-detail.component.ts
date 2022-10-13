@@ -14,7 +14,7 @@ export class ChartDetailComponent implements OnInit {
   Highcharts = Highcharts;
   pieChartOptions: any;
   listLuminariesMap: LuminariaInMap[] = [];
-  public selectedType: string = "tipo_luminaria";
+  public selectedType: string = 'tipo_luminaria';
   listDataChart: DataChart[] = [];
   dataToUseInChart: (string | number | undefined)[][] = [];
   optionsChart = OptionsChart;
@@ -26,7 +26,7 @@ export class ChartDetailComponent implements OnInit {
     this.createPieChart();
   }
 
-  valueDataChange(event: any){
+  valueDataChange(event: any) {
     this.selectedType = event;
     this.chargeChartInfo();
     this.createPieChart();
@@ -38,11 +38,17 @@ export class ChartDetailComponent implements OnInit {
     this.listLuminariesMap = this.luminariesService.getLuminariesInMap();
 
     if (this.listLuminariesMap && this.listLuminariesMap.length > 0) {
-      this.listLuminariesMap.forEach(luminary => {
-        let founded = this.listDataChart.find(dc => dc.nombre == luminary[this.selectedType as keyof typeof luminary]);
+      this.listLuminariesMap.forEach((luminary) => {
+        let founded = this.listDataChart.find(
+          (dc) =>
+            dc.nombre == luminary[this.selectedType as keyof typeof luminary]
+        );
         if (founded) {
           this.listDataChart.forEach((dataChartInList) => {
-            if (dataChartInList.nombre == luminary[this.selectedType as keyof typeof luminary]) {
+            if (
+              dataChartInList.nombre ==
+              luminary[this.selectedType as keyof typeof luminary]
+            ) {
               if (dataChartInList.cantidad || dataChartInList.cantidad == 0) {
                 dataChartInList.cantidad++;
               }
@@ -50,14 +56,15 @@ export class ChartDetailComponent implements OnInit {
           });
         } else {
           let dataChart = new DataChart();
-          dataChart.nombre = luminary[this.selectedType as keyof typeof luminary];
+          dataChart.nombre =
+            luminary[this.selectedType as keyof typeof luminary];
           dataChart.cantidad = 1;
           this.listDataChart.push(dataChart);
         }
       });
       this.listDataChart.forEach((lDataChart) => {
         this.dataToUseInChart.push([lDataChart.nombre, lDataChart.cantidad]);
-      })
+      });
     }
   }
 
@@ -74,7 +81,9 @@ export class ChartDetailComponent implements OnInit {
         enabled: false,
       },
       title: {
-        text: this.selectedType.substring(0,1).toLocaleUpperCase() + this.selectedType.replace("_", " ").substring(1),
+        text:
+          this.selectedType.substring(0, 1).toLocaleUpperCase() +
+          this.selectedType.replace('_', ' ').substring(1),
       },
       subtitle: {
         text: 'N° total luminarias ' + this.listLuminariesMap.length,
@@ -91,7 +100,7 @@ export class ChartDetailComponent implements OnInit {
             enabled: true,
             color: '#000000',
             connectorColor: '#000000',
-            format: '<b>{point.name}</b>:<br>{point.percentage}%'
+            format: '<b>{point.name}</b>:<br>{point.percentage}%',
           },
         },
       },
