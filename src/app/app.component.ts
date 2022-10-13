@@ -68,6 +68,11 @@ export class AppComponent {
       await fetch('assets/data/luminarias.geojson')
     ).json();
 
+    const {
+      features: features
+    } = luminaires;
+    this.luminariesService.setLuminariesInMap(features);
+
     const options: GeoJSONOptions = {
       pointToLayer: (feature: GeoJSON.Feature, latLng: LatLng) =>
         circleMarker(latLng),

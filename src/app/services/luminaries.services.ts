@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Luminaria } from '../models/luminaria.model';
+import { LuminariaInMap } from '../models/luminariaInMap.model';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +8,16 @@ import { Luminaria } from '../models/luminaria.model';
 export class LuminariesService {
   public validLuminaries = false;
   public lumininaries: Luminaria[] = [];
+  public luminariaesInMap: LuminariaInMap[] = [];
 
   setValidLuminaries(validLuminaries: boolean) {
     this.validLuminaries = validLuminaries;
+  }
+
+  setLuminariesInMap(features: []) {
+    features.forEach((feature) => {
+      this.luminariaesInMap.push(feature["properties"]);
+    });
   }
 
   getValidLuminaries(): boolean {
