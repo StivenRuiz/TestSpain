@@ -1,5 +1,12 @@
-<div class="row">
-    <div class="col-6">
-        <div id="chart-pie"></div>
+<div>
+  <div class="container-chart">
+    <div class="col-md-12">
+      <highcharts-chart
+        style="width: 100%; display: block; margin: auto; float: left"
+        [Highcharts]="Highcharts"
+        [options]="pieChartOptions"
+      >
+      </highcharts-chart>
     </div>
+  </div>
 </div>

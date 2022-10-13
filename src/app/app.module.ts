@@ -10,6 +10,7 @@ import { LuminariesChargeComponent } from './luminaries-charge/luminaries-charge
 import { ToastComponent } from './toast/toast.component';
 import { ToasterComponent } from './toaster/toaster.component';
 import { ChartDetailComponent } from './chart-detail/chart-detail.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import { ChartDetailComponent } from './chart-detail/chart-detail.component';
     LuminariesChargeComponent,
     ToastComponent,
     ToasterComponent,
-    ChartDetailComponent
+    ChartDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LeafletModule
+    LeafletModule,
+    HighchartsChartModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

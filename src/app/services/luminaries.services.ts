@@ -16,8 +16,12 @@ export class LuminariesService {
 
   setLuminariesInMap(features: []) {
     features.forEach((feature) => {
-      this.luminariaesInMap.push(feature["properties"]);
+      this.luminariaesInMap.push(feature['properties']);
     });
+  }
+
+  getLuminariesInMap() {
+    return this.luminariaesInMap;
   }
 
   getValidLuminaries(): boolean {
